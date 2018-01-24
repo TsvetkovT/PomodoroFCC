@@ -1,12 +1,43 @@
 /**
  * Created by TT on 24.01.18 г..
  */
+var i = 0;
+b = 10;
+
+console.log(document.getElementById("pie-chart"));
+
+var a = new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+        labels: [],
+        datasets: [{
+
+            backgroundColor: ["#c82027", "#b3b3b3"],
+            data: [0, 100]
+        }]
+    },
+    options: {
+        events: [],
+        title: {
+            display: true,
+            text: 'Pomodoro tricky clock in minutes'
+        },
+        animation: false,
+        tooltips: {
+            enabled: false
+        }
+    }
+});
+
+a
 
 
-function myfun(b) { setInterval(function() {
-    var a = 0;
-//a = a + 1;
-    while (a < b) {
+
+function startClock() {
+
+    var start = setInterval(function () {
+
+        i = i + 1;
 
         var chart = new Chart(document.getElementById("pie-chart"), {
             type: 'pie',
@@ -15,10 +46,11 @@ function myfun(b) { setInterval(function() {
                 datasets: [{
 
                     backgroundColor: ["#c82027", "#b3b3b3"],
-                    data: [a, b - a]
+                    data: [i, b - i]
                 }]
             },
             options: {
+                events: [],
                 title: {
                     display: true,
                     text: 'Pomodoro tricky clock in minutes'
@@ -29,15 +61,17 @@ function myfun(b) { setInterval(function() {
                 }
             }
         });
-        if (a = b) {
-            break;
-        }
-        a = a + 1;
-
-    }
 
 
-}, 1000);
-};
+    }, 1000);
 
-myfun(100);
+    setTimeout(() => { clearInterval(start);}, 3*1000);
+
+
+}
+
+
+
+//startClock();
+
+/* later */
