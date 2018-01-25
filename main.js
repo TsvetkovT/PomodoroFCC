@@ -4,38 +4,52 @@
 var i = 0;
 b = 10;
 
-console.log(document.getElementById("pie-chart"));
+var start;
+var pause = true;
+var reset;
+var currentSecond;
 
-var a = new Chart(document.getElementById("pie-chart"), {
-    type: 'pie',
-    data: {
-        labels: [],
-        datasets: [{
 
-            backgroundColor: ["#c82027", "#b3b3b3"],
-            data: [0, 100]
-        }]
-    },
-    options: {
-        events: [],
-        title: {
-            display: true,
-            text: 'Pomodoro tricky clock in minutes'
-        },
-        animation: false,
-        tooltips: {
-            enabled: false
-        }
-    }
+
+$(document).ready (function () {
+    Reset();
 });
 
-a
+
+function Reset() {
+
+    var a = new Chart(document.getElementById("pie-chart"), {
+        type: 'pie',
+        data: {
+            labels: [],
+            datasets: [{
+
+                backgroundColor: ["#c82027", "#b3b3b3"],
+                data: [0, 100]
+            }]
+        },
+        options: {
+            events: [],
+            title: {
+                display: true,
+                text: 'Pomodoro tricky clock in minutes'
+            },
+            animation: false,
+            tooltips: {
+                enabled: false
+            }
+        }
+    });
+
+}
 
 
 
-function startClock() {
+function Clock() {
 
-    var start = setInterval(function () {
+
+
+    var begin = setInterval(function () {
 
         i = i + 1;
 
@@ -62,16 +76,46 @@ function startClock() {
             }
         });
 
+        $('#pause').click(function () {
+
+                setTimeout(function () {
+                    clearInterval(begin);
+                }, (i - 1) * 1000);
+                pause = false;
+
+
+        })
+
+
+        $('#reset').click(function () {
+            Reset();
+            i = 0;
+            setTimeout(function () {
+                clearInterval(begin);
+            }, 0);
+        })
+
 
     }, 1000);
 
-    setTimeout(() => { clearInterval(start);}, 3*1000);
+
+    setTimeout(function () {
+        clearInterval(begin);
+    }, b * 1000);
+
 
 
 }
 
 
+/** Control buttons **/
+$('#start').click(function () {
+    start = true;
+    pause = true;
+    reset = true;
 
-//startClock();
+    Clock();
 
-/* later */
+})
+
+
