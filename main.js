@@ -1,13 +1,11 @@
 /**
  * Created by TT on 24.01.18 г..
  */
-var i;
-var sess = 10;
-var bre = 5;
-var currentSec = $("#timer").html();
+var i = 1;
+var sess = 25*60;
+var bre = 5*60;
 var start = true;
 var pause;
-var reset;
 var intID;
 
 
@@ -15,11 +13,12 @@ var intID;
 $(document).ready (function () {
     Reset();
 
-    $("#timer").hide();
+    //   $("#timer").hide();
 
 
 
     function Reset() {
+
 
         var a = new Chart(document.getElementById("pie-chart"), {
             type: 'pie',
@@ -35,7 +34,7 @@ $(document).ready (function () {
                 events: [],
                 title: {
                     display: true,
-                    text: 'Pomodoro tricky clock in minutes'
+                    text: ''
                 },
                 animation: false,
                 tooltips: {
@@ -46,78 +45,112 @@ $(document).ready (function () {
 
     }
 
+    /** drawing function **/
+
+    function draw(i, minutes, color) {
+
+        $("#timer").text(i);
 
 
-    function Clock(i, minutes, color) {
+        var chart = new Chart(document.getElementById("pie-chart"), {
+            type: 'pie',
+            data: {
+                labels: [],
+                datasets: [{
 
-        intID = setInterval(function () {
-
-            i = i + 1;
-
-            $("#timer").text(i);
-            var chart = new Chart(document.getElementById("pie-chart"), {
-                type: 'pie',
-                data: {
-                    labels: [],
-                    datasets: [{
-
-                        backgroundColor: [color, "#b3b3b3"], //red "#c82027" grey "#b3b3b3"
-                        data: [i, minutes - i]
-                    }]
+                    backgroundColor: [color, "#b3b3b3"], //red "#c82027" grey "#b3b3b3"
+                    data: [i, minutes - i]
+                }]
+            },
+            options: {
+                events: [],
+                title: {
+                    display: true,
+                    text: ''
                 },
-                options: {
-                    events: [],
-                    title: {
-                        display: true,
-                        text: 'Pomodoro tricky clock in minutes'
-                    },
-                    animation: false,
-                    tooltips: {
-                        enabled: false
-                    }
+                animation: false,
+                tooltips: {
+                    enabled: false
                 }
-            });
+            }
+        });
 
+    }
 
-
-        }, 1000);
-
-
+    function Clock() {
+        intID = setInterval(function () {
+            if (i <= sess) {
+                draw(i++, sess, "#c82027");
+            } else if (i > sess && i <= (sess + bre)) {
+                draw(i++ - sess, bre, "#008000");
+            } else {
+                i = 1;
+            }
+        }, 10);
 
 
 
     }
 
+
+    // function Clock(x) {
+    //
+    //     for (var i = x; i <= sess + bre; i++) {
+    //
+    //         (function (i) {
+    //
+    //             intID = setTimeout(function () {
+    //                 if (i <= sess) {
+    //                     if (start == true) {
+    //
+    //                         draw(i, sess, "#c82027");
+    //                         console.log("i START = " + i);
+    //                     } else {
+    //                         clearTimeout(intID);
+    //                         x = i;
+    //                         i = 0;
+    //                     }
+    //                 } else if (i > sess) {
+    //                     if (start == true) {
+    //
+    //                         draw(i - sess, bre, "#008000");
+    //                         console.log("i STOP = " + i);
+    //                     } else {
+    //                         clearTimeout(intID);
+    //                         x = i;
+    //                         i = 0;
+    //                     }
+    //                 }
+    //
+    //             }, 1000 * i);
+    //         })(i);
+    //     }
+    // };
 
 
     function  stopClock() {
-        pause = true;
         start = false;
+        pause = true;
         clearInterval(intID);
 
         console.log("start is: " + start + " pause is: " + pause);
+        console.log("i = " + i);
 
-    }
+    };
 
 
 
 
     /** Control buttons **/
     $('#start').click(function () {
+        start = true;
+      Clock();
+        console.log("start is: " + start + " pause is: " + pause);
+        console.log("i = " + i);
+
+    });
 
 
-        if (start == true) {
-            Clock(0, sess, "#c82027");
-            console.log("before pause");
-            pause = true;
-
-        } else if (start == false){
-            Clock(Number($("#timer").html()), sess, "#c82027");
-            console.log("after pause");
-            pause = true;
-        }
-
-    })
 
 
     $('#pause').click(function () {
@@ -127,9 +160,10 @@ $(document).ready (function () {
     })
 
     $('#reset').click(function () {
-        start = true;
-        $("#timer").html(0);
-        stopClock();
+      //  start = true;
+        $("#timer").html(1);
+        clearInterval(intID);
+        i = 1;
         Reset();
 
     })

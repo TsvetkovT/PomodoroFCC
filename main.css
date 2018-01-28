@@ -1,3 +1,24 @@
+@import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+.glyphicon {
+    font-size: 50px;
+    font-weight: normal;
+
+
+}
+
 body{
     background-color: rgb(179, 180, 180);
+}
+
+
+
+.btn-primary.outline{
+    background-color: transparent;
+    border-color: white;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    background-color: transparent;
+    border-color: white;
+    box-shadow: none;
 }
