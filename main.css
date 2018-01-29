@@ -1,10 +1,11 @@
 @import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
-.glyphicon {
+
+.fa {
+   color: #fff;
+    text-shadow: 1px 1px 1px #ccc;
     font-size: 50px;
-    font-weight: normal;
-
-
+    font-weight: lighter;
 }
 
 body{
