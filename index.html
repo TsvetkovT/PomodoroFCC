@@ -5,6 +5,7 @@
     <title>Pomodoro Clock</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.22/fabric.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
           integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,11 +35,12 @@
                     <br/>
                 </div>
 
-
-<i id="start" class="fa fa-play-circle-o fa-4x" aria-hidden="false"></i>
-
-                <button id="pause">Pause</button>
-                <button id="reset">Reset</button>
+<div class="row text-center">
+    <canvas id = "control"></canvas>
+                <!--<label id="start"></label>-->
+                <!--<button id="pause">Pause</button>-->
+                <!--<button id="reset">Reset</button>-->
+</div>
 
 <!--https://ibb.co/kwsiw6-->
 <!--https://ibb.co/jPDZ3m-->
