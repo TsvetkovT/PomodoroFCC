@@ -5,7 +5,7 @@
     <title>Pomodoro Clock</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.22/fabric.min.js"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
           integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,22 +35,32 @@
                     <br/>
                 </div>
 
-<div class="row text-center">
-    <canvas id = "control"></canvas>
-                <!--<label id="start"></label>-->
-                <!--<button id="pause">Pause</button>-->
-                <!--<button id="reset">Reset</button>-->
-</div>
+                <div class="row text-center">
 
-<!--https://ibb.co/kwsiw6-->
-<!--https://ibb.co/jPDZ3m-->
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-            </div>
 
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                       <span id="control" class="esri-icon-play"></span>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <span id="refresh" class="esri-icon-refresh"></span>
+                    </div>
+
+                    <!--<canvas id = "control"></canvas>-->
+                    <!--<button id="control" class = 'start'></button>-->
+                    <!--<button id="pause">Pause</button>-->
+                    <!--<button id="reset">Reset</button>-->
+
+
+                    <!--https://ibb.co/kwsiw6-->
+                    <!--https://ibb.co/jPDZ3m-->
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                </div>
+
+            </div>
+            <script src="main.js"></script>
         </div>
-        <script src="main.js"></script>
     </div>
-</div>
 </body>
 </html>

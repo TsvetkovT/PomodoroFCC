@@ -1,49 +1,20 @@
 /**
  * Created by TT on 24.01.18 г..
  */
-var i = 1;
-var sess = 25*60;
-var bre = 5*60;
+var i = 0;
+var sess = 10;
+var bre = 5;
 var start = true;
 var pause;
 var intID;
 
+var button = $('#control');
 
 
+/** logic functions **/
 $(document).ready (function () {
     Reset();
 
-    //   $("#timer").hide();
-
-
-
-    function Reset() {
-
-
-        var a = new Chart(document.getElementById("pie-chart"), {
-            type: 'pie',
-            data: {
-                labels: [],
-                datasets: [{
-
-                    backgroundColor: ["#c82027", "#b3b3b3"],
-                    data: [0, 100]
-                }]
-            },
-            options: {
-                events: [],
-                title: {
-                    display: true,
-                    text: ''
-                },
-                animation: false,
-                tooltips: {
-                    enabled: false
-                }
-            }
-        });
-
-    }
 
     /** drawing function **/
 
@@ -74,7 +45,6 @@ $(document).ready (function () {
                 }
             }
         });
-
     }
 
     function Clock() {
@@ -86,87 +56,53 @@ $(document).ready (function () {
             } else {
                 i = 1;
             }
-        }, 10);
-
-
-
+        }, 1000);
     }
 
 
-    // function Clock(x) {
-    //
-    //     for (var i = x; i <= sess + bre; i++) {
-    //
-    //         (function (i) {
-    //
-    //             intID = setTimeout(function () {
-    //                 if (i <= sess) {
-    //                     if (start == true) {
-    //
-    //                         draw(i, sess, "#c82027");
-    //                         console.log("i START = " + i);
-    //                     } else {
-    //                         clearTimeout(intID);
-    //                         x = i;
-    //                         i = 0;
-    //                     }
-    //                 } else if (i > sess) {
-    //                     if (start == true) {
-    //
-    //                         draw(i - sess, bre, "#008000");
-    //                         console.log("i STOP = " + i);
-    //                     } else {
-    //                         clearTimeout(intID);
-    //                         x = i;
-    //                         i = 0;
-    //                     }
-    //                 }
-    //
-    //             }, 1000 * i);
-    //         })(i);
-    //     }
-    // };
-
-
     function  stopClock() {
-        start = false;
-        pause = true;
         clearInterval(intID);
-
-        console.log("start is: " + start + " pause is: " + pause);
-        console.log("i = " + i);
-
     };
 
 
-
+/** end logic functions **/
 
     /** Control buttons **/
-    $('#start').click(function () {
-        start = true;
-      Clock();
-        console.log("start is: " + start + " pause is: " + pause);
-        console.log("i = " + i);
 
+    function StartPause() {
+
+        if(button.attr('class') == 'esri-icon-play') {
+            button.toggleClass('esri-icon-play esri-icon-pause')
+            Clock();
+        } else {
+            button.toggleClass('esri-icon-pause esri-icon-play')
+            stopClock();
+        }
+    }
+
+    function Reset() {
+        draw(0,100,"#c82027");
+        $("#timer").html(1);
+        clearInterval(intID);
+
+        i = 1;
+
+        if (button.attr('class') == 'esri-icon-play') {
+            button.toggleClass('esri-icon-play esri-icon-play');
+        } else if (button.attr('class') == 'esri-icon-pause'){
+            button.toggleClass('esri-icon-pause esri-icon-play');
+        }
+    }
+
+
+    $("#control").click(function () {
+        StartPause();
     });
 
 
-
-
-    $('#pause').click(function () {
-
-        stopClock();
-
-    })
-
-    $('#reset').click(function () {
-      //  start = true;
-        $("#timer").html(1);
-        clearInterval(intID);
-        i = 1;
+    $("#refresh").click(function () {
         Reset();
-
     })
 
-
+ /** End Control buttons **/
 }); //end $(document).ready
