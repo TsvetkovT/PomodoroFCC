@@ -2,8 +2,8 @@
  * Created by TT on 24.01.18 г..
  */
 var i = 0;
-var sess = 10;
-var bre = 5;
+var sess = 60;
+var bre = 10;
 var start = true;
 var pause;
 var intID;
@@ -56,7 +56,7 @@ $(document).ready (function () {
             } else {
                 i = 1;
             }
-        }, 1000);
+        }, 100);
     }
 
 

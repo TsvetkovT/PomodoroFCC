@@ -55,3 +55,35 @@ body{
     font-size: 48px;
     color: white;
 }
+
+.esri-icon-up {
+    content: "\ue682";
+    font-size: 48px;
+    color: white;
+    font-kerning: auto;
+
+}
+
+
+
+.esri-icon-down {
+    content: "\ue681";
+    font-size: 48px;
+    color: white;
+    font-kerning: auto;
+    margin-left: 4px;
+
+}
+
+.svg-icon {
+    font-size: 48px;
+}
+
+#session, #break {
+    margin-top: 5px;
+    font-family: Verdana;
+    font-size: 26px;
+    color: white;
+    text-align: center;
+
+}

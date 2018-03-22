@@ -6,27 +6,32 @@
 
 
 // create a wrapper around native canvas element (with id="c")
-var canvas = new fabric.StaticCanvas('controller');
-
+var canvas = new fabric.Canvas('controller');
+var line;
 
 // create a rectangle object
 function drawLine() {
 
 
-for (i = 1; i<=12; i++) {
-        var line = new fabric.Line([15*i, 20, 15*i, 0], {
+for (var i = 1; i<10; i++) {
+        line = new fabric.Line([15*i, 20, 15*i, 0], {
             strokeWidth: 3,
             stroke: 'black',
-            opacity: Number((0.1*i).toFixed(1))
+            selectable: false,
+            opacity: Number((0.1*i).toFixed(2))
         });
         canvas.add(line);
     }
 
-    for (i = 24; i>=12; i--) {
-        var line = new fabric.Line([15*i, 20, 15*i, 0], {
+
+
+
+    for (i = 1; i<10; i++) {
+        line = new fabric.Line([150 + 15*i, 20, 150 + 15*i, 0], {
             strokeWidth: 3,
             stroke: 'black',
-            opacity: Number((0.017*i).toFixed(1))
+            selectable: false,
+            opacity: Number((1 - 0.1*i).toFixed(2))
         });
         canvas.add(line);
     }
@@ -36,6 +41,25 @@ for (i = 1; i<=12; i++) {
 
 
 drawLine();
+console.log(drawLine());
+
+line = new fabric.Line([150, 40, 150, 0], {
+    strokeWidth: 3,
+    stroke: 'black',
+    selectable: false,
+    opacity: 1
+});
+canvas.add(line);
+
+
+canvas.onclick = function () {
+    line.animate('left', line.left === 100 ? 100 : 100, {
+        duration: 1000,
+        onChange: canvas.renderAll.bind("controller"),
+        easing: fabric.util.ease["easyInOutQuad"]}
+
+
+)}
 
 
 // var line = new fabric.Line([100, 100, 0, 0], {
